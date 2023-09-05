@@ -1,11 +1,12 @@
-![Saleor Platform](https://user-images.githubusercontent.com/249912/71523206-4e45f800-28c8-11ea-84ba-345a9bfc998a.png)
+![Nextjs Storefront](https://user-images.githubusercontent.com/44495184/185616229-5eadcddb-9170-404f-be57-91c66ffe3bae.png)
 
 <div align="center">
-  <h1>Saleor Platform</h1>
+  <h1>Next.js Storefront</h1>
 </div>
 
 <div align="center">
-  <p>Run all Saleor services from one repository.</p>
+  <p><b>Next.js Storefront</b>: Your open-source frontend starter pack for building performant e-commerce experiences with <a href="https://github.com/saleor/saleor">Saleor</a>.
+  <p><b>Saleor Checkout</b>: Extensible Next.js checkout application and payment integrations powered by Saleor API.</p>
 </div>
 
 <div align="center">
@@ -19,156 +20,111 @@
 </div>
 
 <div align="center">
-  <a href="https://githubbox.com/saleor/saleor-platform">🔎 Explore Code</a>
+  <a href="https://demo.saleor.io/">▶️ Demo</a>
+   <span> • </span>
+  <a href="https://githubbox.com/saleor/react-storefront">🔎 Explore Code</a>
 </div>
 
-## About
+## Motivation
 
-### What is Saleor Platform?
+🏎️ **modern & fast**:
+The project utilizes all the best practices for e-commerce, like SSR, ISR, and image optimization.
 
-Saleor Platform is the easiest way to start local development with all the major Saleor services:
-- [Core GraphQL API](https://github.com/saleor/saleor)
-- [Dashboard](https://github.com/saleor/saleor-dashboard)
-- Mailpit (Test email interface)
-- Jaeger (APM)
-- The necessary databases, cache, etc.
+💳 **integrated payments**:
+Reduce the purchase friction by taking advantage of integrations with modern payment providers such as Adyen, Mollie or Stripe.
 
-*Keep in mind this repository is for local development only and is not meant to be deployed in any production environment! If you're not a developer and just want to try out Saleor you can check our [live demo](https://demo.saleor.io/).*
+🛠️ **easily customizable**:
+TailwindCSS can be easily extended and tweaked, or completely replaced with your favorite CSS solution.
 
-## Requirements
-1. [Docker](https://docs.docker.com/install/)
+👌 **works out-of-the-box**:
+Pre-configured tools built with DX in mind.
 
-## How to clone the repository?
+## Stack
 
-To clone the repository, run the following command
+- Next.js
+- TypeScript
+- GraphQL with Apollo Client
+- Tailwind CSS
+- Turborepo
+- Saleor Checkout
+
+## Quickstart
+
+Supercharge your development with our CLI tool and free developer account at [Saleor Cloud](https://cloud.saleor.io/). To download and install Saleor CLI, run the following command:
 
 ```
-git clone https://github.com/saleor/saleor-platform.git
+npm i -g @saleor/cli
 ```
 
-## How to run it?
+[Learn more about Saleor CLI](https://docs.saleor.io/docs/3.x/cli)
 
-1. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
-    - Windows/MacOS: Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
-    - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
-    - Linux: No action is required, sharing is already enabled and memory for the Docker engine is not limited.
+Set up your local storefront development environment by running the storefront create command with --demo attribute. It will create a fresh clone, install dependencies and create a Saleor instance in the Saleor Cloud. The backend will be set to the newly created Cloud instance.
 
-2. Go to the cloned directory:
-```shell
-cd saleor-platform
+```
+saleor storefront create --demo
 ```
 
-3. Build the application:
-```shell
-docker compose build
+You can also spawn your local storefront development environment without using the --demo attribute. It will create a fresh clone and install dependencies. The default configuration uses the master staging environment of the Saleor Cloud as a backend.
+
+```
+saleor storefront create
 ```
 
-4. Apply Django migrations:
-```shell
-docker compose run --rm api python3 manage.py migrate
+---
+
+## Development
+
+First install [`pnpm`](https://pnpm.io/) (an alternative to `npm`, focused on performance) globally:
+
+```
+npm install -g pnpm
 ```
 
-5. Populate the database with example data and create the admin user:
-```shell
-docker compose run --rm api python3 manage.py populatedb --createsuperuser
-```
-*Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
+> **Note**
+> You might also consider using [proto](https://moonrepo.dev/docs/proto/install) for managing your `pnpm` and `node` versions across different projects. This repository has a configuration for proto.
 
-6. Run the application:
-```shell
-docker compose up
+Then install dependencies:
+
+```
+pnpm i
 ```
 
-## Where is the application running?
-- Saleor Core (API) - http://localhost:8000
-- Saleor Dashboard - http://localhost:9000
-- Jaeger UI (APM) - http://localhost:16686
-- Mailpit (Test email interface) - http://localhost:8025
+To start the servers, run:
 
-# Troubleshooting
-
-- [How to solve issues with lack of available space or build errors after an update](#how-to-solve-issues-with-lack-of-available-space-or-build-errors-after-an-update)
-- [How to run application parts?](#how-to-run-application-parts)
-- [How to update the subprojects to the newest versions?](#how-to-update-the-subprojects-to-the-newest-versions)
-
-## How to solve issues with lack of available space or build errors after an update
-
-Most of the time both issues can be solved by cleaning up space taken by old containers. After that, we build again whole platform. 
-
-
-1. Make sure docker stack is not running
-```shell
-docker compose stop
+```
+pnpm dev
 ```
 
-2. Remove existing volumes
+[The command will boot up 4 applications running on different ports](./docs/development.md#ports).
 
-**Warning!** Proceeding will remove also your database container! If you need existing data, please remove only services that cause problems! https://docs.docker.com/compose/reference/rm/
-```shell
-docker compose rm
-```
+Read more about development in [docs/development.md](./docs/development.md).
 
-3. Build fresh containers 
-```shell
-docker compose build
-```
+If you have any issues with setting up the app please refer to our [FAQ](./docs/faq.md)
 
-4. Now you can run a fresh environment using commands from `How to run it?` section. Done!
+## Payment gateways
 
-### Still no available space
+Saleor App Checkout supports three configurable payment gateways:
 
-If you are getting issues with lack of available space, consider pruning your docker cache:
+<a href="https://www.mollie.com/en">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./docs/logos/mollie_light.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./docs/logos/mollie_dark.svg">
+    <img alt="Mollie" src="./docs/logos/mollie_dark.svg">
+  </picture>
+</a>
 
-**Warning!** This will remove:
-  - all stopped containers
-  - all networks not used by at least one container
-  - all dangling images
-  - all dangling build cache 
-  
-  More info: https://docs.docker.com/engine/reference/commandline/system_prune/
-  
-<details><summary>I've been warned</summary>
-<p>
+<br>
 
-```shell
-docker system prune
-```
+[![Adyen](./docs/logos/adyen.svg)](https://www.adyen.com/)
 
-</p>
-</details>
+[![Stripe](./docs/logos/stripe_blurple.svg)](https://stripe.com/)
 
-### Issues with migrations after changing the versions - resetting the database
+For further information, please go to [docs/payment/index.md](./docs/payment/index.md).
 
-Please submit an issue ticket if you spot issues with database migrations during the version update. 
+## Deployment
 
-When testing developer releases or making local changes, you might end up in a state where you would like to reset the database completely. Since its state is persisted in the mounted volume, you'll need to use a dedicated command.
+Read Vercel deployment guide in [docs/vercel.md](./docs/vercel.md)
 
-**Warning!** This command will remove all data already stored in the database.
+## FAQ
 
-<details><summary>I've been warned</summary>
-<p>
-
-```shell
-docker compose down --volumes db
-```
-
-</p>
-</details>
-   
-## How to run application parts?
-  - `docker compose up api worker` for backend services only
-  - `docker compose up` for backend and frontend services
-
-## Feedback
-
-If you have any questions or feedback, do not hesitate to contact us via [GitHub Discussions](https://github.com/saleor/saleor/discussions).
-
-## License
-
-Disclaimer: Everything you see here is open and free to use as long as you comply with the [license](https://github.com/saleor/saleor-platform/blob/main/LICENSE). There are no hidden charges. We promise to do our best to fix bugs and improve the code.
-
-Some situations do call for extra code; we can cover exotic use cases or build you a custom e-commerce appliance.
-
-#### Crafted with ❤️ by [Saleor Commerce](https://saleor.io/)
-
-hello@saleor.io
+Read FAQ in [docs/faq.md](./docs/faq.md)
