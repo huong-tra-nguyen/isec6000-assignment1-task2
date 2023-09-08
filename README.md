@@ -1,4 +1,4 @@
-# isec6000-assignment1-task2
+# ISEC6000-assignment1-task2
 
 # Saleor Platform Setup
 
