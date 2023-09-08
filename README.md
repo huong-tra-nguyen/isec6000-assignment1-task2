@@ -8,7 +8,7 @@ This repository provides instructions for configuring the Saleor platform, which
 To set up the Saleor platform, follow these steps:
 
 1. Clone this repository to your local machine:
-git clone https://github.com/speakas/saleor-platform.git
+git clone https://github.com/huong-tra-nguyen/isec6000-assignment1-task2.git
 
 2. Go to the cloned repository:
 cd saleor-platform/
