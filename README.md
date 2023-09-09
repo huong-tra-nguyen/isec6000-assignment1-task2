@@ -9,6 +9,7 @@ To set up the Saleor platform, follow these steps:
 
 1. Clone this repository to your local machine:
 git clone https://github.com/huong-tra-nguyen/isec6000-assignment1-task2.git
+Note: This repository contains 2 modified files from react-storefront that will enable the storefront to be accessible at http://localhost:3009/
 
 2. Go to the cloned repository:
 cd saleor-platform/
@@ -26,6 +27,13 @@ Note: Using the `--createsuperuser` option creates an admin account with the ema
 ## Running the Application
 Start the application with the following command:
 docker compose up
+
+## Result
+The application can be accessed through the web browser at these URLs:
+- API: http://localhost:8000/
+- Storefront: http://localhost:3009/
+- Dashboard: http://localhost:9003/
+
 
 ## Docker Compose Configuration
 To run the storefront alongside the API, copy the storefront docker-compose.yaml file into the saleor-platform docker-compose.yaml file and make the necessary adjustments. Set the build path to "./react-storefront".
