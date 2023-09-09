@@ -10,7 +10,7 @@ To set up the Saleor platform, follow these steps:
 1. Clone this repository to your local machine:
 git clone https://github.com/huong-tra-nguyen/isec6000-assignment1-task2.git
 
-Note: This repository contains 2 modified files from react-storefront that will enable the storefront to be accessible at http://localhost:3009/
+Note: This repository also contains 2 modified files from react-storefront that will enable the storefront to be accessible at http://localhost:3009/
 
 2. Go to the cloned repository:
 cd saleor-platform/
