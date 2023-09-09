@@ -23,6 +23,7 @@ docker compose run --rm api python3 manage.py migrate
 
 5. Populate the database with sample data and create an admin user:
 docker compose run --rm api python3 manage.py populatedb --createsuperuser
+
 Note: Using the `--createsuperuser` option creates an admin account with the email admin@example.com and the password set as admin.
 
 ## Running the Application
@@ -37,11 +38,9 @@ The application can be accessed through the web browser at these URLs:
 
 
 ## Docker Compose Configuration
-To run the storefront alongside the API, copy the storefront docker-compose.yaml file into the saleor-platform docker-compose.yaml file and make the necessary adjustments. Set the build path to "./react-storefront".
+To run the storefront alongside the API, copy the react-storefront docker-compose.yaml file into the saleor-platform docker-compose.yaml file and make the necessary adjustments. Set the build path to "./react-storefront".
 
 ## API Address Setup
 In the docker-compose.yaml file, modify the API reference from http://localhost:8000/graphql to http://api:8000/graphql. This adjustment is crucial for proper communication between Docker containers.
 
-## Docker Container Networking
-Ensure that all Docker containers share the same network for seamless communication. Add this configuration to the network list for each image in the docker-compose.yaml file.
 
